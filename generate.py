@@ -263,9 +263,28 @@ def build_page(title, slug, content_html, pub_date):
         </a>
         <p class="font-mono text-xs text-muted tracking-widest uppercase mt-1">Ideas · Arguments · Evidence</p>
       </div>
-      <nav class="flex items-center justify-center gap-6 pb-3 text-sm font-body font-semibold text-ink flex-wrap">
-        {nav_html(slug)}
-      </nav>
+<!-- Mobile hamburger button -->
+<div class="flex items-center justify-between pb-3 lg:hidden">
+  <span class="font-mono text-xs uppercase tracking-widest text-muted">Menu</span>
+  <button id="nav-toggle" class="text-ink p-1" aria-label="Toggle menu">
+    <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Nav links: hidden on mobile until toggled, always visible on desktop -->
+<nav id="nav-menu" class="hidden lg:flex items-center justify-center gap-6 pb-3 text-sm font-body font-semibold text-ink flex-wrap">
+  <a href="/" class="nav-link">Home</a>
+  <a href="/ben-shapiro-bio-and-positions/" class="nav-link">Ben Shapiro</a>
+  <a href="/jordan-peterson-bio-positions/" class="nav-link">Jordan Peterson</a>
+  <a href="/sam-harris-bio/" class="nav-link">Sam Harris</a>
+  <a href="/noam-chomsky-bio-positions/" class="nav-link">Noam Chomsky</a>
+  <a href="/christopher-hitchens-bio-and-positions/" class="nav-link">Christopher Hitchens</a>
+</nav>
     </div>
   </header>
 
@@ -364,6 +383,18 @@ def build_page(title, slug, content_html, pub_date):
       entries.forEach(e => {{ if (e.isIntersecting) {{ e.target.classList.add('visible'); obs.unobserve(e.target); }} }});
     }}, {{threshold: 0.1}});
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    // Hamburger menu toggle
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    if (toggle) {{
+      toggle.addEventListener('click', () => {{
+        menu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+      }});
+    }}
   </script>
 
 </body>

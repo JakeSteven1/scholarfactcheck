@@ -4,30 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ============================================================
-       PAGE META — edit per page
-  ============================================================ -->
   <title>Scholar Fact Check | What Do Public Intellectuals Actually Believe?</title>
   <meta name="description" content="Tracking the claims, arguments, and positions of public intellectuals — checked against evidence and scholarly consensus." />
   <link rel="canonical" href="https://scholarfactcheck.com/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="PAGE TITLE | Scholar Fact Check" />
-  <meta property="og:description" content="PAGE DESCRIPTION" />
-  <meta property="og:url" content="https://scholarfactcheck.com/PAGE-SLUG/" />
-  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Scholar Fact Check | What Do Public Intellectuals Actually Believe?" />
+  <meta property="og:description" content="Tracking the claims, arguments, and positions of public intellectuals — checked against evidence and scholarly consensus." />
+  <meta property="og:url" content="https://scholarfactcheck.com/" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://scholarfactcheck.com/assets/og-default.jpg" />
 
-  <!-- ============================================================
-       FONTS
-  ============================================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- ============================================================
-       TAILWIND CDN  (no build step needed)
-  ============================================================ -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -39,439 +29,175 @@
             mono:    ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            ink:     '#0f0e0d',
-            paper:   '#f7f4ef',
-            cream:   '#ede9e1',
-            rule:    '#d4cfc6',
-            accent:  '#b5451b',   /* burnt-orange — change per section if desired */
-            muted:   '#7a7066',
+            ink:    '#0f0e0d',
+            paper:  '#f7f4ef',
+            cream:  '#ede9e1',
+            rule:   '#d4cfc6',
+            accent: '#b5451b',
+            muted:  '#7a7066',
           },
-          typography: {
-            DEFAULT: {
-              css: {
-                color: '#0f0e0d',
-                fontFamily: '"Source Serif 4", Georgia, serif',
-              }
-            }
-          }
         }
       }
     }
   </script>
 
-  <!-- ============================================================
-       GLOBAL STYLES
-  ============================================================ -->
   <style>
-    /* Subtle paper texture on the background */
     body {
       background-color: #f7f4ef;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
-
-    /* Rule separator used throughout */
-    .rule {
-      border: none;
-      border-top: 1px solid #d4cfc6;
-    }
-
-    /* Thick accent rule */
-    .rule-accent {
-      border: none;
-      border-top: 3px solid #b5451b;
-    }
-
-    /* Lede / drop-cap first paragraph */
-    .lede::first-letter {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 4.2rem;
-      font-weight: 900;
-      line-height: 0.8;
-      float: left;
-      margin: 0.05em 0.08em 0 0;
-      color: #b5451b;
-    }
-
-    /* Verdict badge colours */
-    .badge-true      { background:#d1fae5; color:#065f46; }
-    .badge-mostly    { background:#d1fae5; color:#065f46; }
-    .badge-mixed     { background:#fef3c7; color:#92400e; }
-    .badge-misleading{ background:#fee2e2; color:#991b1b; }
-    .badge-false     { background:#fee2e2; color:#991b1b; }
-
-    /* Smooth anchor scroll */
+    .rule        { border: none; border-top: 1px solid #d4cfc6; }
+    .rule-accent { border: none; border-top: 3px solid #b5451b; }
     html { scroll-behavior: smooth; }
-
-    /* Nav underline animation */
-    .nav-link {
-      position: relative;
-    }
+    .nav-link { position: relative; }
     .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 2px;
-      background: #b5451b;
-      transition: width 0.25s ease;
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px; background: #b5451b; transition: width 0.25s ease;
     }
     .nav-link:hover::after { width: 100%; }
-
-    /* Card hover lift */
-    .card-lift {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(15,14,13,0.1);
-    }
-
-    /* Fade-up on scroll (JS adds .visible) */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Blockquote pull-quote style */
-    blockquote.pull {
-      border-left: 4px solid #b5451b;
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: #3d3830;
-      margin: 2rem 0;
-    }
-
-    /* AdSense placeholder styling */
-    .ad-slot {
-      background: #ede9e1;
-      border: 1px dashed #d4cfc6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: #7a7066;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+    .card-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card-lift:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(15,14,13,0.1); }
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
   </style>
 
-  <!-- ============================================================
-       ADSENSE — replace ca-pub-XXXXXXXXXXXXXXXX with your ID
-  ============================================================ -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7205603150750890" crossorigin="anonymous"></script>
 </head>
 
 <body class="font-body text-ink antialiased">
 
-  <!-- ============================================================
-       SITE HEADER
-  ============================================================ -->
+  <!-- HEADER -->
   <header class="border-b border-rule bg-paper/90 backdrop-blur-sm sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
-      <!-- Top bar: date + tagline -->
       <div class="flex items-center justify-between py-2 border-b border-rule text-xs font-mono text-muted tracking-widest uppercase">
         <span id="js-date"></span>
         <span>Tracking what thinkers actually say</span>
       </div>
-
-      <!-- Logo row -->
       <div class="py-4 text-center">
-        <a href="/" class="group inline-block">
+        <a href="/" class="inline-block">
           <span class="font-display font-black text-3xl sm:text-4xl tracking-tight text-ink">Scholar</span><span class="font-display font-black text-3xl sm:text-4xl tracking-tight text-accent">Fact</span><span class="font-display font-black text-3xl sm:text-4xl tracking-tight text-ink">Check</span>
         </a>
         <p class="font-mono text-xs text-muted tracking-widest uppercase mt-1">Ideas · Arguments · Evidence</p>
       </div>
+<!-- Mobile hamburger button -->
+<div class="flex items-center justify-between pb-3 lg:hidden">
+  <span class="font-mono text-xs uppercase tracking-widest text-muted">Menu</span>
+  <button id="nav-toggle" class="text-ink p-1" aria-label="Toggle menu">
+    <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</div>
 
-      <!-- Nav -->
-      <nav class="flex items-center justify-center gap-6 pb-3 text-sm font-body font-semibold text-ink flex-wrap">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/ben-shapiro-bio-and-positions/" class="nav-link">Ben Shapiro</a>
-        <a href="/jordan-peterson-bio-positions/" class="nav-link">Jordan Peterson</a>
-        <a href="/sam-harris-bio/" class="nav-link">Sam Harris</a>
-        <a href="/noam-chomsky-bio-positions/" class="nav-link">Noam Chomsky</a>
-        <a href="/christopher-hitchens-bio-and-positions/" class="nav-link">Christopher Hitchens</a>
-      </nav>
-
-    </div>
+<!-- Nav links: hidden on mobile until toggled, always visible on desktop -->
+<nav id="nav-menu" class="hidden lg:flex items-center justify-center gap-6 pb-3 text-sm font-body font-semibold text-ink flex-wrap">
+  <a href="/" class="nav-link">Home</a>
+  <a href="/ben-shapiro-bio-and-positions/" class="nav-link">Ben Shapiro</a>
+  <a href="/jordan-peterson-bio-positions/" class="nav-link">Jordan Peterson</a>
+  <a href="/sam-harris-bio/" class="nav-link">Sam Harris</a>
+  <a href="/noam-chomsky-bio-positions/" class="nav-link">Noam Chomsky</a>
+  <a href="/christopher-hitchens-bio-and-positions/" class="nav-link">Christopher Hitchens</a>
+</nav>   
+</div>
   </header>
-
-  <!-- ============================================================
-       AD SLOT — leaderboard below header
-  ============================================================ -->
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4">
-    <!-- PRODUCTION: replace .ad-slot div with your actual ins tag -->
-    
-    <!--
-    
-    -->
-  </div>
-
-  <!-- ============================================================
-       MAIN CONTENT
-       Pick ONE of the layouts below and delete the others.
-  ============================================================ -->
 
   <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
 
-    <!-- ──────────────────────────────────────────────────────────
-         LAYOUT A: ARTICLE PAGE
-         Use for: thinker-on-topic pages, debate breakdowns, etc.
-    ────────────────────────────────────────────────────────────── -->
-    <div id="layout-article">
+    <!-- Hero -->
+    <header class="text-center pt-16 mb-14 fade-up">
+      <h1 class="font-display font-black text-5xl sm:text-6xl leading-tight mb-4">
+        What do public intellectuals<br/><span class="italic text-accent">actually</span> believe?
+      </h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+        We track the claims, arguments, and positions of prominent thinkers — checked against evidence and scholarly consensus.
+      </p>
+    </header>
 
-      <!-- Breadcrumb -->
-      <nav class="text-xs font-mono text-muted uppercase tracking-widest pt-6 pb-4 flex gap-2">
-        <a href="/" class="hover:text-accent transition-colors">Home</a>
-        <span>/</span>
-        <a href="/ben-shapiro-bio-and-positions/" class="hover:text-accent transition-colors">Ben Shapiro</a>
-        <span>/</span>
-        <span class="text-ink">Climate Change</span>
-      </nav>
+    <hr class="rule mb-14" />
 
-      <hr class="rule" />
+    <!-- Thinkers grid -->
+    <section class="mb-14 fade-up">
+      <h2 class="font-display font-bold text-2xl mb-1">Thinkers</h2>
+      <hr class="rule-accent w-16 mb-6" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-      <!-- Article header -->
-      <header class="pt-8 pb-6 fade-up">
-        <!-- Topic tag -->
-        <span class="inline-block font-mono text-xs uppercase tracking-widest text-accent border border-accent px-2 py-0.5 mb-4">Climate Change</span>
+        <a href="/ben-shapiro-bio-and-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Conservative</p>
+          <h3 class="font-display font-bold text-xl mb-1">Ben Shapiro</h3>
+          <p class="text-sm text-muted">Daily Wire co-founder, author, Harvard Law graduate.</p>
+        </a>
 
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight text-ink mb-4">
-          Ben Shapiro<br/><span class="italic font-bold text-3xl sm:text-4xl text-muted">on Climate Change</span>
-        </h1>
+        <a href="/jordan-peterson-bio-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Psychology / Philosophy</p>
+          <h3 class="font-display font-bold text-xl mb-1">Jordan Peterson</h3>
+          <p class="text-sm text-muted">Clinical psychologist, professor, author of 12 Rules for Life.</p>
+        </a>
 
-        <p class="text-muted font-mono text-xs uppercase tracking-widest mb-6">
-          Last updated <time datetime="2024-01-01">January 2024</time> · 8 min read
-        </p>
+        <a href="/sam-harris-bio/" class="bg-cream border border-rule rounded p-5 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Neuroscience / Atheism</p>
+          <h3 class="font-display font-bold text-xl mb-1">Sam Harris</h3>
+          <p class="text-sm text-muted">Neuroscientist, philosopher, host of the Making Sense podcast.</p>
+        </a>
 
-        <hr class="rule-accent mb-6" />
+        <a href="/noam-chomsky-bio-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Linguistics / Left Politics</p>
+          <h3 class="font-display font-bold text-xl mb-1">Noam Chomsky</h3>
+          <p class="text-sm text-muted">Linguist, philosopher, prominent left-wing political commentator.</p>
+        </a>
 
-        <!-- Verdict summary bar -->
-        <div class="bg-cream border border-rule rounded p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-          <div class="flex-1">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Overall Assessment</p>
-            <p class="font-display font-bold text-xl">Accepts climate science with caveats on policy</p>
-          </div>
-          <span class="badge-mixed font-mono text-xs uppercase tracking-wider font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Mixed</span>
-        </div>
-      </header>
-
-      <!-- Two-column layout: article + sidebar -->
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-12 pt-6">
-
-        <!-- Article body -->
-        <article class="fade-up">
-
-          <!-- Lede paragraph gets drop cap -->
-          <p class="lede font-body text-lg leading-relaxed mb-6">
-            Ben Shapiro's position on climate change has evolved over the years, shifting from outright skepticism toward a more nuanced stance that acknowledges the scientific consensus while strongly opposing most proposed policy responses.
-          </p>
-
-          <p class="text-lg leading-relaxed mb-6">
-            This page tracks his statements, checks them against the scientific literature, and provides relevant context.
-          </p>
-
-          <h2 class="font-display font-bold text-2xl mt-10 mb-4">What He Has Said</h2>
-          <hr class="rule mb-6" />
-
-          <!-- Claim block — repeat as needed -->
-          <div class="bg-cream border border-rule rounded p-5 mb-6 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-2">Claim · 2023</p>
-            <blockquote class="pull">
-              "I believe the climate is changing and humans are contributing to it, but the proposed solutions would destroy the economy."
-            </blockquote>
-            <div class="flex items-center gap-3 mt-3">
-              <span class="badge-mixed font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Mixed</span>
-              <p class="text-sm text-muted">First half aligns with IPCC consensus; second half is contested by economists.</p>
-            </div>
-          </div>
-
-          <!-- Another claim block -->
-          <div class="bg-cream border border-rule rounded p-5 mb-6 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-2">Claim · 2019</p>
-            <blockquote class="pull">
-              "If the coasts flood, just move inland."
-            </blockquote>
-            <div class="flex items-center gap-3 mt-3">
-              <span class="badge-false font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Misleading</span>
-              <p class="text-sm text-muted">Ignores immense cost of displacement, infrastructure loss, and developing-nation vulnerability.</p>
-            </div>
-          </div>
-
-          <h2 class="font-display font-bold text-2xl mt-10 mb-4">What the Evidence Says</h2>
-          <hr class="rule mb-6" />
-
-          <p class="text-lg leading-relaxed mb-6">
-            <!-- Write your fact-check body here -->
-            The IPCC Sixth Assessment Report (2021) concludes with "unequivocal" certainty that human influence has warmed the climate. Policy costs are genuinely debated among economists, though most peer-reviewed analyses suggest the costs of inaction exceed the costs of mitigation.
-          </p>
-
-          <!-- In-article ad slot -->
-          <div class="my-8">
-            
-            <!--
-            
-            -->
-          </div>
-
-          <h2 class="font-display font-bold text-2xl mt-10 mb-4">Sources</h2>
-          <hr class="rule mb-6" />
-
-          <ul class="space-y-2 text-sm text-muted font-mono">
-            <li><a href="#" class="hover:text-accent underline underline-offset-2 transition-colors">IPCC Sixth Assessment Report, 2021</a></li>
-            <li><a href="#" class="hover:text-accent underline underline-offset-2 transition-colors">Source 2</a></li>
-          </ul>
-
-        </article>
-
-        <!-- Sidebar -->
-        <aside class="space-y-6 fade-up">
-
-          <!-- Thinker card -->
-          <div class="bg-cream border border-rule rounded p-5">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-3">About the Thinker</p>
-            <h3 class="font-display font-bold text-xl mb-1">Ben Shapiro</h3>
-            <p class="text-sm text-muted leading-relaxed mb-3">Conservative commentator, author, co-founder of The Daily Wire. Known for fast-paced debate style and emphasis on logic over emotion.</p>
-            <a href="/ben-shapiro-bio-and-positions/" class="text-accent font-mono text-xs uppercase tracking-wider hover:underline">Full Bio & All Positions →</a>
-          </div>
-
-          <!-- Related pages -->
-          <div class="bg-cream border border-rule rounded p-5">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-3">Related Pages</p>
-            <ul class="space-y-2">
-              <li><a href="/jordan-peterson-on-climate-change/" class="text-sm hover:text-accent transition-colors nav-link">Peterson on Climate Change</a></li>
-              <li><a href="/noam-chomsky-on-steven-pinker-and-vice-versa/" class="text-sm hover:text-accent transition-colors nav-link">Chomsky vs. Pinker</a></li>
-              <li><a href="/free-will-arguments-and-rebuttals/" class="text-sm hover:text-accent transition-colors nav-link">Free Will: Arguments & Rebuttals</a></li>
-            </ul>
-          </div>
-
-          <!-- Sidebar ad -->
-          
-          <!--
-          
-          -->
-
-        </aside>
+        <a href="/christopher-hitchens-bio-and-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Journalism / Atheism</p>
+          <h3 class="font-display font-bold text-xl mb-1">Christopher Hitchens</h3>
+          <p class="text-sm text-muted">Journalist, author, and outspoken atheist. 1949–2011.</p>
+        </a>
 
       </div>
-    </div>
-    <!-- END LAYOUT A -->
+    </section>
 
-
-    <!-- ──────────────────────────────────────────────────────────
-         LAYOUT B: BIO / POSITIONS PAGE
-         Use for: /ben-shapiro-bio-and-positions/, /sam-harris-bio/, etc.
-         DELETE everything between these comments if not using.
-    ────────────────────────────────────────────────────────────── -->
-    <!--
-    <div id="layout-bio" class="pt-10 fade-up">
-
-      <header class="mb-10">
-        <span class="font-mono text-xs uppercase tracking-widest text-accent">Thinker Profile</span>
-        <h1 class="font-display font-black text-5xl sm:text-6xl mt-2 mb-3">Ben Shapiro</h1>
-        <hr class="rule-accent w-24 mb-4" />
-        <p class="text-lg text-muted max-w-2xl leading-relaxed">
-          Conservative political commentator, author, and co-founder of The Daily Wire. Born 1984. Harvard Law graduate. Prolific podcaster and debate presence.
-        </p>
-      </header>
-
-      <section class="mb-12">
-        <h2 class="font-display font-bold text-2xl mb-4">Positions at a Glance</h2>
-        <hr class="rule mb-6" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <a href="/ben-shapiro-on-climate-change/" class="bg-cream border border-rule rounded p-4 card-lift flex items-center justify-between">
-            <span class="font-body font-semibold">Climate Change</span>
-            <span class="badge-mixed font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Mixed</span>
-          </a>
-          <a href="/ben-shapiro-on-abortion/" class="bg-cream border border-rule rounded p-4 card-lift flex items-center justify-between">
-            <span class="font-body font-semibold">Abortion</span>
-            <span class="badge-false font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Pro-Life</span>
-          </a>
-          <a href="/ben-shapiro-on-gun-control/" class="bg-cream border border-rule rounded p-4 card-lift flex items-center justify-between">
-            <span class="font-body font-semibold">Gun Control</span>
-            <span class="badge-mixed font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Opposes</span>
-          </a>
-          <a href="/ben-shapiro-on-evolution/" class="bg-cream border border-rule rounded p-4 card-lift flex items-center justify-between">
-            <span class="font-body font-semibold">Evolution</span>
-            <span class="badge-true font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full">Accepts</span>
-          </a>
-        </div>
-      </section>
-
-    </div>
-    -->
-    <!-- END LAYOUT B -->
-
-
-    <!-- ──────────────────────────────────────────────────────────
-         LAYOUT C: HOMEPAGE
-         Use for: / only
-         DELETE everything between these comments if not using.
-    ────────────────────────────────────────────────────────────── -->
-    <!--
-    <div id="layout-home" class="pt-10">
-
-      <header class="text-center mb-14 fade-up">
-        <h1 class="font-display font-black text-5xl sm:text-6xl leading-tight mb-4">
-          What do public intellectuals<br/><span class="italic text-accent">actually</span> believe?
-        </h1>
-        <p class="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-          We track the claims, arguments, and positions of prominent thinkers — checked against evidence and scholarly consensus.
-        </p>
-      </header>
-
-      <section class="mb-14 fade-up">
-        <h2 class="font-display font-bold text-2xl mb-1">Thinkers</h2>
-        <hr class="rule-accent w-16 mb-6" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <a href="/ben-shapiro-bio-and-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Conservative</p>
-            <h3 class="font-display font-bold text-xl">Ben Shapiro</h3>
-          </a>
-          <a href="/jordan-peterson-bio-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Psychology / Philosophy</p>
-            <h3 class="font-display font-bold text-xl">Jordan Peterson</h3>
-          </a>
-          <a href="/sam-harris-bio/" class="bg-cream border border-rule rounded p-5 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Neuroscience / Atheism</p>
-            <h3 class="font-display font-bold text-xl">Sam Harris</h3>
-          </a>
-          <a href="/noam-chomsky-bio-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Linguistics / Leftist Politics</p>
-            <h3 class="font-display font-bold text-xl">Noam Chomsky</h3>
-          </a>
-          <a href="/christopher-hitchens-bio-and-positions/" class="bg-cream border border-rule rounded p-5 card-lift">
-            <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Journalism / Atheism</p>
-            <h3 class="font-display font-bold text-xl">Christopher Hitchens</h3>
-          </a>
-        </div>
-      </section>
-
-    </div>
-    -->
-    <!-- END LAYOUT C -->
+    <!-- Popular pages -->
+    <section class="mb-14 fade-up">
+      <h2 class="font-display font-bold text-2xl mb-1">Popular Pages</h2>
+      <hr class="rule-accent w-16 mb-6" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <a href="/noam-chomsky-on-steven-pinker-and-vice-versa/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Chomsky</p>
+          <p class="font-body font-semibold">Chomsky vs. Steven Pinker</p>
+        </a>
+        <a href="/jordan-peterson-on-immigration/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Peterson</p>
+          <p class="font-body font-semibold">Jordan Peterson on Immigration</p>
+        </a>
+        <a href="/sam-harris-on-eckhart-tolle/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Harris</p>
+          <p class="font-body font-semibold">Sam Harris on Eckhart Tolle</p>
+        </a>
+        <a href="/free-will-arguments-and-rebuttals/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Philosophy</p>
+          <p class="font-body font-semibold">Free Will — Arguments & Rebuttals</p>
+        </a>
+        <a href="/noam-chomsky-jordan-peterson/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Debate</p>
+          <p class="font-body font-semibold">Chomsky vs. Jordan Peterson</p>
+        </a>
+        <a href="/jordan-peterson-on-the-gender-pay-gap/" class="bg-cream border border-rule rounded p-4 card-lift">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted mb-1">Peterson</p>
+          <p class="font-body font-semibold">Jordan Peterson on the Gender Pay Gap</p>
+        </a>
+      </div>
+    </section>
 
   </main>
 
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
+  <!-- FOOTER -->
   <footer class="border-t border-rule bg-cream mt-10">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-muted">
-
       <div>
         <p class="font-display font-bold text-ink text-lg mb-2">ScholarFactCheck</p>
         <p class="leading-relaxed">Tracking what public intellectuals actually say — and whether it holds up.</p>
       </div>
-
       <div>
         <p class="font-mono text-xs uppercase tracking-widest text-ink mb-3">Thinkers</p>
         <ul class="space-y-1">
@@ -482,7 +208,6 @@
           <li><a href="/christopher-hitchens-bio-and-positions/" class="hover:text-accent transition-colors">Christopher Hitchens</a></li>
         </ul>
       </div>
-
       <div>
         <p class="font-mono text-xs uppercase tracking-widest text-ink mb-3">Site</p>
         <ul class="space-y-1">
@@ -492,40 +217,33 @@
           <li><a href="/privacy-policy-2/" class="hover:text-accent transition-colors">Privacy Policy</a></li>
         </ul>
       </div>
-
     </div>
     <div class="border-t border-rule text-center py-4 font-mono text-xs text-muted">
       © <span id="js-year"></span> ScholarFactCheck.com · Not affiliated with any thinker or organization
     </div>
   </footer>
 
-  <!-- ============================================================
-       JAVASCRIPT
-  ============================================================ -->
   <script>
-    // Live date in header
-    const dateEl = document.getElementById('js-date');
-    if (dateEl) {
-      dateEl.textContent = new Date().toLocaleDateString('en-US', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-    }
-
-    // Footer year
-    const yearEl = document.getElementById('js-year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    // Intersection Observer: fade-up on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const d = document.getElementById('js-date');
+    if (d) d.textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    const y = document.getElementById('js-year');
+    if (y) y.textContent = new Date().getFullYear();
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    // Hamburger menu toggle
+const toggle = document.getElementById('nav-toggle');
+const menu = document.getElementById('nav-menu');
+const iconOpen = document.getElementById('icon-open');
+const iconClose = document.getElementById('icon-close');
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+}
   </script>
 
 </body>
