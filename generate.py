@@ -246,7 +246,7 @@ def build_page(title, slug, content_html, pub_date):
     .fade-up.visible {{ opacity:1; transform:none; }}
   </style>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_ID}" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7205603150750890" crossorigin="anonymous"></script>
 </head>
 <body class="font-body text-ink antialiased">
 
