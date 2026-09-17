@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_archive/
+
+Sitemap: https://scholarfactcheck.com/sitemap.xml
